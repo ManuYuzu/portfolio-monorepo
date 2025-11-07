@@ -1,5 +1,5 @@
 [build]
-  command = "pnpm --filter frontend build"
+  command = "pnpm install && pnpm --filter frontend build"
   publish = "apps/frontend/dist"
 
 [[redirects]]
