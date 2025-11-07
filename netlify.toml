@@ -1,0 +1,9 @@
+[build]
+  command = "pnpm --filter frontend build"
+  publish = "apps/frontend/dist"
+
+# Puedes agregar variables de entorno aquí
+#[[headers]]
+#  for = "/api/*"
+#  [headers.values]
+#    Access-Control-Allow-Origin = "*"
