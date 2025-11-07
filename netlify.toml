@@ -2,6 +2,11 @@
   command = "pnpm --filter frontend build"
   publish = "apps/frontend/dist"
 
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
 # Puedes agregar variables de entorno aquí
 #[[headers]]
 #  for = "/api/*"
