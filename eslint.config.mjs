@@ -7,7 +7,8 @@ export default [
       sourceType: 'module',
     },
     plugins: {
-      '@typescript-eslint': (await import('@typescript-eslint/eslint-plugin')).default,
+      '@typescript-eslint': (await import('@typescript-eslint/eslint-plugin'))
+        .default,
       prettier: (await import('eslint-plugin-prettier')).default,
     },
     rules: {
@@ -40,7 +41,8 @@ export default [
       sourceType: 'module',
     },
     plugins: {
-      '@typescript-eslint': (await import('@typescript-eslint/eslint-plugin')).default,
+      '@typescript-eslint': (await import('@typescript-eslint/eslint-plugin'))
+        .default,
       prettier: (await import('eslint-plugin-prettier')).default,
     },
     rules: {

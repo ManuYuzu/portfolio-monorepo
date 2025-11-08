@@ -1982,7 +1982,9 @@ packages:
       {
         integrity: sha512-g2FXjlDX/cYuc5CiQvyU/6kkbP1JtmGzh0obW50zD7OKeILVL0NSpPWLXVfqoAGQjom2/SLLx9zHq0KXvD6mbw==,
       }
-    deprecated: This is a stub types definition. dotenv provides its own type definitions, so you do not need this installed.
+    deprecated:
+      This is a stub types definition. dotenv provides its own type definitions,
+      so you do not need this installed.
 
   '@types/eslint-scope@3.7.7':
     resolution:
@@ -4428,7 +4430,10 @@ packages:
       {
         integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==,
       }
-    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+    deprecated:
+      This module is not supported, and leaks memory. Do not use it. Check out
+      lru-cache if you want a good and tested way to coalesce async requests by
+      a key value, which is much more comprehensive and powerful.
 
   inherits@2.0.4:
     resolution:
@@ -8342,7 +8347,8 @@ snapshots:
 
   '@prisma/debug@6.19.0': {}
 
-  '@prisma/engines-version@6.19.0-26.2ba551f319ab1df4bc874a89965d8b3641056773': {}
+  '@prisma/engines-version@6.19.0-26.2ba551f319ab1df4bc874a89965d8b3641056773':
+    {}
 
   '@prisma/engines@6.19.0':
     dependencies:

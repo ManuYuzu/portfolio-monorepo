@@ -4,9 +4,10 @@
   "tabWidth": 2,
   "useTabs": false,
   "trailingComma": "es5",
-  "printWidth": 100,
+  "printWidth": 80,
   "bracketSpacing": true,
   "arrowParens": "always",
+  "proseWrap": "always",
   "endOfLine": "lf",
   "htmlWhitespaceSensitivity": "css",
   "overrides": [
