@@ -6,12 +6,15 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest"
   },
   "devDependencies": {
+    "jsdom": "^27.1.0",
     "patch-package": "^8.0.1",
     "typescript": "~5.9.3",
-    "vite": "^7.1.7"
+    "vite": "^7.1.7",
+    "vitest": "^4.0.8"
   },
   "dependencies": {
     "@vaadin/router": "^2.0.0",
