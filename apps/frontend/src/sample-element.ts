@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import './components/molecules/Button';
+import './components/atoms/Button';
 
 @customElement('sample-element')
 export class SampleElement extends LitElement {
@@ -9,7 +9,6 @@ export class SampleElement extends LitElement {
       display: block;
       padding: 1rem;
       background: #f0f0f0;
-      border-radius: 8px;
       font-family: sans-serif;
     }
     h2 {
@@ -23,7 +22,7 @@ export class SampleElement extends LitElement {
 
   constructor() {
     super();
-    this.message = '¡Hola desde sample-element!';
+    this.message = '¡Hello from sample-element!';
   }
 
   render() {

@@ -1,0 +1,86 @@
+:root {
+  /* Light Theme */
+  --th-light-bg-color: #ffffff;
+  --th-light-text-color: #1d1d1d;
+  --th-light-primary-color: #3d8ee4;
+  --th-light-secondary-color: #6c757d;
+  /* Dark Theme */
+  --th-dark-bg-color: #1d1d1d;
+  --th-dark-text-color: #f1f1f1;
+  --th-dark-primary-color: #226ab6;
+  --th-dark-secondary-color: #adb5bd;
+
+  &:has([data-theme="browser"]) {
+    color-scheme: light dark;
+  }
+  &:has([data-theme="light"]) {
+    color-scheme: light;
+  }
+  &:has([data-theme="dark"]) {
+    color-scheme: dark;
+  }
+}
+
+body {
+  color: CanvasText;
+  background-color: Canvas;
+
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+@layer reset {
+  *,
+  *:after,
+  *:before {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  label {
+    cursor: pointer;
+    max-width: max-content;
+    user-select: none;
+  }
+}
+
+@layer baselayout {
+  html {
+    margin: auto;
+    line-height: 1.5;
+    font-size: 16px;
+    font-family: "Syne", sans-serif;
+    height: 100%;
+    background: white;
+  }
+
+  body {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    min-height: 100dvh;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  button,
+  input,
+  textarea {
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  #app {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+}
