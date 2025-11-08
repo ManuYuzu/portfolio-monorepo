@@ -18,7 +18,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "build": "npm run build --workspace=apps/backend && npm run build --workspace=apps/frontend"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.46.3",
