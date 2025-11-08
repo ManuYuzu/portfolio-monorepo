@@ -7,10 +7,10 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
   // private prisma = new PrismaClient();
 
-  // @Get()
-  // getHello(): string {
-  //   return this.appService.getHello();
-  // }
+  @Get()
+  getHello(): string {
+    return this.appService.getHello();
+  }
 
   // @Get('db-check')
   // async dbCheck(): Promise<string> {
