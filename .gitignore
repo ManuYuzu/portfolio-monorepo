@@ -30,7 +30,5 @@ coverage/
 out/
 # Optional:
 *.local
-*.test.js
-*.test.ts
 
 **/node_modules/
