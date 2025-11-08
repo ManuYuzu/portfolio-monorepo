@@ -1,40 +1,30 @@
 import { LitElement, html, css } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement } from 'lit/decorators.js';
 
-function switcherTemplate(onThemeChange: (e: Event) => void) {
+const icons = [
+  { name: 'browser', url: './icons/sun_and_moon.svg' },
+  { name: 'light', url: './icons/sun.svg' },
+  { name: 'dark', url: './icons/moon.svg' },
+];
+
+function switcherTemplate(selected: string, onThemeChange: (e: Event) => void) {
   return html`
     <div yz-switcher>
-      <label for="radio-browser">
-        <input
-          id="radio-browser"
-          name="switch"
-          type="radio"
-          value="browser"
-          checked
-          @change=${onThemeChange}
-        />
-        <i style="--icon: url('src/utils/icons/sun_and_moon.svg');"></i>
-      </label>
-      <label for="radio-light">
-        <input
-          id="radio-light"
-          name="switch"
-          type="radio"
-          value="light"
-          @change=${onThemeChange}
-        />
-        <i style="--icon: url('src/utils/icons/sun.svg');"></i>
-      </label>
-      <label for="radio-dark">
-        <input
-          id="radio-dark"
-          name="switch"
-          type="radio"
-          value="dark"
-          @change=${onThemeChange}
-        />
-        <i style="--icon: url('src/utils/icons/moon.svg');"></i>
-      </label>
+      ${icons.map(
+        ({ name, url }) => html`
+          <label for="radio-${name}">
+            <input
+              id="radio-${name}"
+              name="switch"
+              type="radio"
+              value="${name}"
+              ?checked=${selected === name}
+              @change=${onThemeChange}
+            />
+            <i style="--icon: url('${url}');"></i>
+          </label>
+        `
+      )}
     </div>
   `;
 }
@@ -100,24 +90,20 @@ function switcherStyles() {
 export class SwitcherElement extends LitElement {
   static styles = switcherStyles();
 
-  @property({ type: Boolean })
-  declare isOn;
-
   constructor() {
     super();
-    this.isOn = false;
   }
 
-  private _renderSwitcher() {
-    return switcherTemplate(this._onThemeChange.bind(this));
-  }
+  private selected: string = 'browser';
 
-  private _onThemeChange(e: Event) {
+  private _onThemeChange = (e: Event) => {
     const value = (e.target as HTMLInputElement).value;
+    this.selected = value;
     document.querySelector('#app')?.setAttribute('data-theme', value);
-  }
+    this.requestUpdate();
+  };
 
   render() {
-    return this._renderSwitcher();
+    return switcherTemplate(this.selected, this._onThemeChange);
   }
 }

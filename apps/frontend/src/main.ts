@@ -1,5 +1,5 @@
 import './styles/index.css';
-import './sample-element';
+import './components/organisms/sample-element';
 import './components/molecules/Switcher';
 
 const app = document.querySelector('#app');
