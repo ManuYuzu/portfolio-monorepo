@@ -15,8 +15,14 @@ jobs:
           version: 8
       - run: pnpm install
       - run: pnpm --filter frontend build
+      - name: Debug dist contents
+        run: ls -l ./apps/frontend/dist
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./apps/frontend/dist
           publish_branch: gh-pages
+          # Mantén los archivos previos en gh-pages
+          keep_files: true
+          # Desactiva forceOrphan para evitar problemas de historial
+          force_orphan: false
