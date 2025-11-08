@@ -22,6 +22,7 @@
     "test": "npm run test --workspace=apps/backend && npm run test --workspace=apps/frontend",
     "prepare": "husky",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "format": "prettier --write .",
     "build": "npm run build --workspace=apps/backend && npm run build --workspace=apps/frontend"
   },
