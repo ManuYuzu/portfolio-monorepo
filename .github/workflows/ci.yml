@@ -19,6 +19,12 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Clean npm cache
+        run: npm cache clean --force
+
+      - name: Clean pnpm store
+        run: pnpm store prune
+
       - name: Install dependencies
         run: npm install
 
