@@ -6,6 +6,13 @@ settings:
 
 importers:
   .:
+    dependencies:
+      '@prisma/client':
+        specifier: 6.19.0
+        version: 6.19.0(prisma@6.19.0(typescript@5.9.3))(typescript@5.9.3)
+      prisma:
+        specifier: 6.19.0
+        version: 6.19.0(typescript@5.9.3)
     devDependencies:
       '@typescript-eslint/eslint-plugin':
         specifier: ^8.46.3
