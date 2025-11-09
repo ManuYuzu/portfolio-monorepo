@@ -31,8 +31,8 @@ function iconStyles() {
   return css`
     :host {
       display: inline-block;
-      width: 1rem;
-      height: 1rem;
+      width: 2em;
+      height: 2em;
       color: inherit;
     }
 
