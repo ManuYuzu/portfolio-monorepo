@@ -1,13 +1,61 @@
 import { LitElement, html, css } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
-const icons = [
-  { name: 'browser', url: './icons/sun_and_moon.svg' },
-  { name: 'light', url: './icons/sun.svg' },
-  { name: 'dark', url: './icons/moon.svg' },
-];
+import '../atoms/Icon';
 
-function switcherTemplate(selected: string, onThemeChange: (e: Event) => void) {
+@customElement('switcher-element')
+export class SwitcherElement extends LitElement {
+  static styles = switcherStyles();
+
+  // ? Change to property decorator if needed in future
+  private icons: Icon[] = [
+    { name: 'browser', url: './icons/sun_and_moon.svg' },
+    { name: 'light', url: './icons/sun.svg' },
+    { name: 'dark', url: './icons/moon.svg' },
+  ];
+
+  constructor() {
+    super();
+  }
+
+  private selected: string = 'browser';
+
+  private _onThemeChange = (e: Event) => {
+    const value = (e.target as HTMLInputElement).value;
+    this.selected = value;
+
+    document.querySelector('#app')?.setAttribute('data-theme', value);
+
+    this.requestUpdate();
+
+    (e.target as HTMLElement).blur();
+  };
+
+  render() {
+    setMaxHeight(this, this.icons.length);
+
+    return switcherTemplate({
+      icons: this.icons,
+      selected: this.selected,
+      onThemeChange: this._onThemeChange,
+    });
+  }
+}
+
+interface Icon {
+  name: string;
+  url: string;
+}
+
+function switcherTemplate({
+  icons,
+  selected,
+  onThemeChange,
+}: {
+  icons: Icon[];
+  selected: string;
+  onThemeChange: (e: Event) => void;
+}) {
   return html`
     <div yz-switcher role="radiogroup" aria-label="Theme selector">
       ${icons.map(
@@ -24,7 +72,7 @@ function switcherTemplate(selected: string, onThemeChange: (e: Event) => void) {
               aria-checked="${selected === name}"
               aria-label="${name} theme"
             />
-            <i style="--icon: url('${url}');"></i>
+            <icon-element url="${url}"></icon-element>
           </label>
         `
       )}
@@ -34,14 +82,19 @@ function switcherTemplate(selected: string, onThemeChange: (e: Event) => void) {
 
 function switcherStyles() {
   return css`
+    :host {
+      --switcher-max-height: 2rem;
+    }
+
     [yz-switcher] {
       background-color: light-dark(#1d1d1d, #f5f5f5);
       color: light-dark(#dddddd, #1d1d1d);
       padding: 0.5rem;
       border-radius: 1rem;
-      position: absolute;
+      position: fixed;
+      z-index: 1001;
       top: 1rem;
-      right: 1rem;
+      right: 2rem;
       width: 2rem;
       height: 2rem;
       overflow: hidden;
@@ -71,21 +124,6 @@ function switcherStyles() {
           outline-offset: 2px;
         }
 
-        > i {
-          display: inline-flex;
-
-          &::before {
-            content: '';
-            display: inline-block;
-            width: 1em;
-            height: 1em;
-            mask: var(--icon) center / 1em no-repeat;
-            background-color: currentColor;
-
-            transition: background-color 0.3s ease;
-          }
-        }
-
         &:has(input:checked) {
           background-color: light-dark(#ee5656, #8cf777);
         }
@@ -95,9 +133,9 @@ function switcherStyles() {
         }
       }
 
-      &:hover,
-      &:focus-within {
-        height: 6rem;
+      &:focus-within,
+      &:hover {
+        height: var(--switcher-max-height);
         > label:not(:has(input:checked)) {
           display: inline-flex;
         }
@@ -106,24 +144,6 @@ function switcherStyles() {
   `;
 }
 
-@customElement('switcher-element')
-export class SwitcherElement extends LitElement {
-  static styles = switcherStyles();
-
-  constructor() {
-    super();
-  }
-
-  private selected: string = 'browser';
-
-  private _onThemeChange = (e: Event) => {
-    const value = (e.target as HTMLInputElement).value;
-    this.selected = value;
-    document.querySelector('#app')?.setAttribute('data-theme', value);
-    this.requestUpdate();
-  };
-
-  render() {
-    return switcherTemplate(this.selected, this._onThemeChange);
-  }
+function setMaxHeight(host: HTMLElement, itemCount: number) {
+  host.style.setProperty('--switcher-max-height', `${itemCount * 2}rem`);
 }

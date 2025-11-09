@@ -1,7 +1,15 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-function buttonTemplate(message: string, count: number, onClick: () => void) {
+function buttonTemplate({
+  message,
+  count,
+  onClick,
+}: {
+  message: string;
+  count: number;
+  onClick: () => void;
+}) {
   return html` <button @click=${onClick}>${message}: ${count}</button> `;
 }
 
@@ -24,10 +32,9 @@ export class ButtonElement extends LitElement {
   static styles = buttonStyles();
 
   @property({ type: String })
-  declare message;
-
+  declare message: string;
   @property({ type: Number })
-  declare count;
+  declare count: number;
 
   constructor() {
     super();
@@ -40,7 +47,11 @@ export class ButtonElement extends LitElement {
   };
 
   private _renderButton() {
-    return buttonTemplate(this.message, this.count, this._handleClick);
+    return buttonTemplate({
+      message: this.message,
+      count: this.count,
+      onClick: this._handleClick,
+    });
   }
 
   render() {
