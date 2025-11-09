@@ -9,7 +9,7 @@ const icons = [
 
 function switcherTemplate(selected: string, onThemeChange: (e: Event) => void) {
   return html`
-    <div yz-switcher>
+    <div yz-switcher role="radiogroup" aria-label="Theme selector">
       ${icons.map(
         ({ name, url }) => html`
           <label for="radio-${name}">
@@ -20,6 +20,9 @@ function switcherTemplate(selected: string, onThemeChange: (e: Event) => void) {
               value="${name}"
               ?checked=${selected === name}
               @change=${onThemeChange}
+              role="radio"
+              aria-checked="${selected === name}"
+              aria-label="${name} theme"
             />
             <i style="--icon: url('${url}');"></i>
           </label>
@@ -31,7 +34,7 @@ function switcherTemplate(selected: string, onThemeChange: (e: Event) => void) {
 
 function switcherStyles() {
   return css`
-    div[yz-switcher] {
+    [yz-switcher] {
       background-color: light-dark(#1d1d1d, #f5f5f5);
       color: light-dark(#dddddd, #1d1d1d);
       padding: 0.5rem;
@@ -39,6 +42,11 @@ function switcherStyles() {
       position: absolute;
       top: 1rem;
       right: 1rem;
+      width: 2rem;
+      height: 2rem;
+      overflow: hidden;
+
+      transition: height 0.3s ease;
 
       > label {
         display: inline-flex;
@@ -77,10 +85,22 @@ function switcherStyles() {
             transition: background-color 0.3s ease;
           }
         }
+
+        &:has(input:checked) {
+          background-color: light-dark(#ee5656, #8cf777);
+        }
+
+        &:not(:has(input:checked)) {
+          display: none;
+        }
       }
 
-      > label:has(input:checked) {
-        background-color: light-dark(#ee5656, #8cf777);
+      &:hover,
+      &:focus-within {
+        height: 6rem;
+        > label:not(:has(input:checked)) {
+          display: inline-flex;
+        }
       }
     }
   `;
