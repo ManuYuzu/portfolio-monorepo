@@ -25,20 +25,23 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
+      - name: Clean pnpm cache
+        run: pnpm cache clean --force
+
       - name: Clean pnpm store
         run: pnpm store prune
 
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Lint
-        run: npm run lint
+        run: pnpm run lint
 
       - name: Generate Prisma Client
         run: cd apps/backend && npx prisma generate
 
       - name: Build
-        run: npm run build
+        run: pnpm run build
 
       - name: Set test database url
         env:
@@ -46,4 +49,4 @@ jobs:
         run: echo "DATABASE_URL=$DATABASE_URL" >> $GITHUB_ENV
 
       - name: Tests
-        run: npm run test
+        run: pnpm run test
