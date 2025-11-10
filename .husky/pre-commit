@@ -6,5 +6,5 @@ cd apps/backend && npx prisma generate
 # Ejecuta los tests relacionados a los archivos staged
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(ts|js)$' | tr '\n' ' ')
 if [ -n "$STAGED_FILES" ]; then
-	npx jest --findRelatedTests $STAGED_FILES
+		npx jest --findRelatedTests $STAGED_FILES --passWithNoTests
 fi
