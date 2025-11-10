@@ -25,9 +25,6 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
-      - name: Clean pnpm cache
-        run: pnpm cache clean --force
-
       - name: Clean pnpm store
         run: pnpm store prune
 
