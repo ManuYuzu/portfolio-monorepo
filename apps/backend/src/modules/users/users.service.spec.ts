@@ -2,27 +2,27 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UsersService } from './users.service';
 
 let service: UsersService;
-let dbAvailable = true;
+// let dbAvailable = true;
 
-async function canConnectPrisma(service: UsersService) {
-  try {
-    await service['prisma'].user.findMany({ take: 1 });
-    return true;
-  } catch {
-    return false;
-  }
-}
+// async function canConnectPrisma(service: UsersService) {
+//   try {
+//     await service['prisma'].user.findMany({ take: 1 });
+//     return true;
+//   } catch {
+//     return false;
+//   }
+// }
 
 beforeAll(async () => {
   const module: TestingModule = await Test.createTestingModule({
     providers: [UsersService],
   }).compile();
   service = module.get<UsersService>(UsersService);
-  dbAvailable = await canConnectPrisma(service);
+  // dbAvailable = await canConnectPrisma(service);
 });
 
 beforeEach(async () => {
-  if (!dbAvailable) return;
+  // if (!dbAvailable) return;
   try {
     await service['prisma'].user.deleteMany();
   } catch {}
