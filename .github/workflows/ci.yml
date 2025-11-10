@@ -40,5 +40,10 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Set test database url
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: echo "DATABASE_URL=$DATABASE_URL" >> $GITHUB_ENV
+
       - name: Tests
         run: npm run test
