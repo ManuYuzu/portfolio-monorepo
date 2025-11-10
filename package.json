@@ -24,7 +24,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "format": "prettier --write .",
-    "build": "pnpm run build --workspace=apps/backend && pnpm run build --workspace=apps/frontend"
+    "build": "pnpm -r --filter=backend --filter=frontend run build"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.46.3",
